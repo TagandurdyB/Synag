@@ -1,3 +1,5 @@
+import 'package:synag/ViewModel/Providers/provider_orientation.dart';
+
 import '/ViewModel/Providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import 'ViewModel/theme_vm.dart';
 
 void main() {
   runApp(MultiProvider(providers: MyProvoders.list, child: const MyApp()));
+  MyOrientation.systemUiOverlayStyle();
 }
 
 class MyApp extends StatelessWidget {

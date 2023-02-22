@@ -1,5 +1,5 @@
-// ignore_for_file: overridden_fields
 
+// ignore_for_file: overridden_fields, file_names
 import 'package:flutter/material.dart';
 
 class ThemeIcon {

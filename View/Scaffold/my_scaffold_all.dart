@@ -1,4 +1,4 @@
-import '../../ViewModel/Providers/Scaffold/provider_app_bar.dart';
+import '../../ViewModel/routes_vm.dart';
 import '/ViewModel/Providers/provider_theme.dart';
 import 'package:flutter/material.dart';
 import '/View/Scaffold/my_navigation_bar.dart';
@@ -7,17 +7,31 @@ import 'my_drawer.dart';
 
 class ScaffoldAll extends StatelessWidget {
   final Widget body;
+  final Widget? appBarLeading;
   final Function? funcBackBtn;
+  final bool bottomDrawer;
   final GlobalKey<ScaffoldState>? scaffoldKey;
   const ScaffoldAll(
-      {required this.body, super.key, this.funcBackBtn, this.scaffoldKey});
+      {required this.body,
+      super.key,
+      this.funcBackBtn,
+      this.scaffoldKey,
+      this.bottomDrawer = false,
+      this.appBarLeading});
   @override
   Widget build(BuildContext context) {
+    double bottomHeight = 0.0;
+    if (bottomDrawer) {
+      bottomHeight = kToolbarHeight + (kToolbarHeight * 0.5);
+    } else {
+      bottomHeight = kToolbarHeight;
+    }
+
     return Scaffold(
       key: scaffoldKey,
       appBar: PreferredSize(
         key: key,
-        preferredSize: Size.fromHeight(DistributorAppBar(context).drawerHeight),
+        preferredSize: Size.fromHeight(bottomHeight),
         child: Container(
           decoration: BoxDecoration(
             color: ProviderTheme().colors.appBar,
@@ -25,12 +39,16 @@ class ScaffoldAll extends StatelessWidget {
           ),
           child: Column(
             children: [
-              MyAppBar(funcBackBtn: funcBackBtn),
+              MyAppBar(
+                  funcBackBtn: funcBackBtn,
+                  bottomDrawer: bottomDrawer,
+                  leading: appBarLeading),
               Visibility(
-                visible: DistributorAppBar(context).bottomDrawer,
+                visible:
+                    bottomDrawer, //DistributorAppBar(context).bottomDrawer,
                 child: Expanded(
                     child: Container(
-                  color: ProviderTheme().colors.appBar,
+                  color: DistributorTheme(context).colors.appBar,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: buildBottom(),
                 )),
@@ -41,7 +59,7 @@ class ScaffoldAll extends StatelessWidget {
       ),
       drawer: MyDrawer(),
       body: body,
-      bottomNavigationBar: const MyBottomNavigationBar(),
+      //bottomNavigationBar: const MyBottomNavigationBar(),
     );
   }
 
