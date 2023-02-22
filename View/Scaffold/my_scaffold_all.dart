@@ -1,4 +1,4 @@
-import '/View/Scaffold/provider_app_bar.dart';
+import '../../ViewModel/Providers/Scaffold/provider_app_bar.dart';
 import '/ViewModel/Providers/provider_theme.dart';
 import 'package:flutter/material.dart';
 import '/View/Scaffold/my_navigation_bar.dart';

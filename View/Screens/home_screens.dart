@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/View/Scaffold/provider_navigation_bar.dart';
+import '../../ViewModel/Providers/Scaffold/provider_navigation_bar.dart';
 import '/View/Screens/first_screen.dart';
 import '/View/Screens/second_screen.dart';
 
