@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:synag/Model/test_element_model.dart';
 
 class ProviderTestList extends ChangeNotifier {
   // ignore: prefer_final_fields
-  List _tests = [];
+  List<ElemTest> _tests = [];
   List get tests => _tests;
 
-  void addTest(String name) {
-    _tests.add(name);
+  void addTest(ElemTest obj) {
+    _tests.add(obj);
+    notifyListeners();
+  }
+
+  void deleteTest(ElemTest obj) {
+    _tests.remove(obj);
     notifyListeners();
   }
 }
@@ -20,7 +26,8 @@ class ProcessTest {
     return Provider.of<ProviderTestList>(context, listen: false);
   }
 
-  void addTest(String name) => _changeProvider(context).addTest(name);
+  void addTest(ElemTest obj) => _changeProvider(context).addTest(obj);
+  void deleteTest(ElemTest obj) => _changeProvider(context).deleteTest(obj);
 }
 
 class DistributorTest {
@@ -31,6 +38,6 @@ class DistributorTest {
     return Provider.of<ProviderTestList>(context);
   }
 
-  List get tests => _getProvider(context).tests;
+  List<ElemTest> get tests => _getProvider(context).tests;
   int get length => _getProvider(context).tests.length;
 }

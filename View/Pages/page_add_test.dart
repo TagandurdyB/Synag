@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:synag/View/Scaffold/my_scaffold_all.dart';
-import 'package:synag/View/Widgets/ReadyInput/ready_input_base.dart';
-import 'package:synag/View/Widgets/my_container.dart';
-import 'package:synag/ViewModel/Providers/provider_test_list.dart';
-import 'package:synag/ViewModel/Providers/provider_theme.dart';
-import 'package:synag/ViewModel/names_vm.dart';
+import 'package:synag/Model/test_element_model.dart';
+import '/View/Scaffold/my_scaffold_all.dart';
+import '/View/Widgets/ReadyInput/ready_input_base.dart';
+import '/ViewModel/Providers/provider_test_list.dart';
+import '/ViewModel/Providers/provider_theme.dart';
+import '/ViewModel/names_vm.dart';
 
 import '../Widgets/ReadyInput/ready_input.dart';
+import '../Widgets/txt_picker_widget.dart';
 
 // ignore: must_be_immutable
 class AddTestPage extends StatelessWidget {
@@ -31,11 +32,14 @@ class AddTestPage extends StatelessWidget {
                 borderRad: 20,
                 label: "Synagyň ady:",
               ),
+              buildFilePicker(),
               buildBtns()
             ],
           ),
         ));
   }
+
+Widget buildFilePicker()=> TxtPickerWidget();
 
   Widget buildBtns() {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -44,9 +48,12 @@ class AddTestPage extends StatelessWidget {
         color: Colors.blue,
         onPressed: () {
           if (!RIBase.isEmpety(RITags.rITestName)) {
-            ProcessTest(contextM).addTest(RIBase.getText(RITags.rITestName));
+            final obj=ElemTest(name: RIBase.getText(RITags.rITestName));
+            ProcessTest(contextM).addTest(obj);
+             Navigator.pop(contextM);
+          } else{
+              
           }
-          Navigator.pop(contextM);
         },
         child: DistributorTheme(contextM).texts.add,
       )

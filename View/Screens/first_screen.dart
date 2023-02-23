@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:synag/Model/test_element_model.dart';
+import 'package:synag/View/Widgets/my_container.dart';
 import 'package:synag/ViewModel/Providers/provider_test_list.dart';
 import 'package:synag/ViewModel/Providers/provider_theme.dart';
 
 import '../../ViewModel/routes_vm.dart';
+import '../../ViewModel/size_vm.dart';
 
 // ignore: must_be_immutable
 class FirstScreen extends StatelessWidget {
@@ -20,7 +23,7 @@ class FirstScreen extends StatelessWidget {
           ListTile(
               leading: DistributorTheme(context).texts.firstTitle,
               trailing: buildAddBtn()),
-           ListTile(leading: Text("Ady"),trailing: Text("Sorag sany"),),   
+          buildTitles(),
           Expanded(
               child: ListView(
             physics: const BouncingScrollPhysics(),
@@ -34,21 +37,40 @@ class FirstScreen extends StatelessWidget {
     );
   }
 
-  Widget buildAddBtn() => IconButton(
-        onPressed: () => Navigator.pushNamed(contextM, Rout.add),
-        icon: Icon(
-          Icons.add,
-          color: DistributorTheme(contextM).colors.text,
+  Widget buildTitles() => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Ady"),
+            DistributorTheme(contextM).texts.testCount,
+            Text("Aýyr"),
+          ],
         ),
       );
 
-  Widget buildTestCard(String test) {
-    return Card(
-      color: DistributorTheme(contextM).colors.testCard,
-        child: ListTile(
-      onTap: () {},
-      leading: Text(test),
-      trailing: Text("0"),
-    ));
-  }
+  Widget buildAddBtn() => ElevatedButton(
+        onPressed: () => Navigator.pushNamed(contextM, Rout.add),
+        child: DistributorTheme(contextM).texts.add,
+      );
+
+  Widget buildTestCard(ElemTest test) => MyContainer(
+        color: Colors.transparent,
+        shape: MySize.width * 0.02,
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding:const  EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Expanded(child: Text(test.name)),
+          Expanded(child: Center(child: Text("0"))),
+          Expanded(
+            child: MyContainer(
+                alignment: Alignment.centerRight,
+                color: Colors.transparent,
+                borderColor: Colors.transparent,
+                onTap: () => ProcessTest(contextM).deleteTest(test),
+                child: DistributorTheme(contextM).icons.delete),
+          ),
+        ]),
+      );
 }
