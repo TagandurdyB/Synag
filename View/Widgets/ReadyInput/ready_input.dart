@@ -9,13 +9,18 @@ class ReadyInput extends StatefulWidget {
   final int index, maxline;
   final String hidden, label, tag, startVal;
   final bool shape;
+  final bool autoFocus;
+  final FocusNode? focus;
   final double borderRad;
   final Type type;
   final Function? onChange, suffixFunc;
   final Widget? reightWidget;
   const ReadyInput(
-      {super.key, this.startVal = "",
+      {super.key,
+      this.startVal = "",
+      this.focus,
       this.suffixFunc,
+      this.autoFocus = false,
       required this.tag,
       this.index = 0,
       this.hidden = "",
@@ -62,6 +67,8 @@ class _ReadyInputState extends State<ReadyInput> {
         ),
       ),
       child: TextFormField(
+         autofocus: widget.autoFocus,
+         focusNode: widget.focus,
         //initialValue: controls[widget.index].text,
         cursorColor: const Color(0xff5308BE),
         maxLines: widget.maxline,
@@ -96,10 +103,9 @@ class _ReadyInputState extends State<ReadyInput> {
                   }
                 },
                 child: widget.reightWidget ??
-                    const Icon(
-                      Icons.cancel,
-                      color: Colors.black//ThemeProvided().colorText,
-                    ))),
+                    const Icon(Icons.cancel,
+                        color: Colors.black //ThemeProvided().colorText,
+                        ))),
       ),
     );
   }

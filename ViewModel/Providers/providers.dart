@@ -1,4 +1,4 @@
-import 'package:synag/ViewModel/Providers/provider_test_list.dart';
+import 'package:synag/ViewModel/Providers/provider_test.dart';
 
 import '/ViewModel/Providers/provider_theme.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +17,8 @@ class MyProvoders {
     /* ChangeNotifierProvider<ProviderOrientation>(
       create:(context)=> ProviderOrientation(),
     ),*/
-         ChangeNotifierProvider<ProviderTestList>(
-      create:(context)=> ProviderTestList(),
+         ChangeNotifierProvider<ProviderTest>(
+      create:(context)=> ProviderTest(),
     ),
   ];
 }

@@ -1,5 +1,5 @@
 class ElemTest {
-  final String name;
+  final String ask;
   final int count;
   final String a;
   final String b;
@@ -15,7 +15,7 @@ class ElemTest {
       this.c = "",
       this.d = "",
       this.answer = 0,
-      required this.name,
+      required this.ask,
       this.count = 0});
  
 }

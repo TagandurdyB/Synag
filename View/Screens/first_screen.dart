@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synag/Model/test_element_model.dart';
 import 'package:synag/View/Widgets/my_container.dart';
-import 'package:synag/ViewModel/Providers/provider_test_list.dart';
+import 'package:synag/ViewModel/Providers/provider_test.dart';
 import 'package:synag/ViewModel/Providers/provider_theme.dart';
 
 import '../../ViewModel/routes_vm.dart';
@@ -27,10 +27,10 @@ class FirstScreen extends StatelessWidget {
           Expanded(
               child: ListView(
             physics: const BouncingScrollPhysics(),
-            children: List.generate(
-                DistributorTest(contextM).length,
-                (index) =>
-                    buildTestCard(DistributorTest(contextM).tests[index])),
+            children: List.generate(DistributorTest(contextM).length, (index) {
+              final String key = DistributorTest(contextM).keys[index];
+              return buildTestCard(DistributorTest(contextM).tests(key), key);
+            }),
           ))
         ],
       ),
@@ -50,25 +50,28 @@ class FirstScreen extends StatelessWidget {
       );
 
   Widget buildAddBtn() => ElevatedButton(
-        onPressed: () => Navigator.pushNamed(contextM, Rout.add),
+        onPressed: () {
+          ProcessTest(contextM).ereaseTest();
+          Navigator.pushNamed(contextM, Rout.add);
+        },
         child: DistributorTheme(contextM).texts.add,
       );
 
-  Widget buildTestCard(ElemTest test) => MyContainer(
+  Widget buildTestCard(List<ElemTest> test, String key) => MyContainer(
         color: Colors.transparent,
         shape: MySize.width * 0.02,
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding:const  EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Expanded(child: Text(test.name)),
+          Expanded(child: Text(key)),
           Expanded(child: Center(child: Text("0"))),
           Expanded(
             child: MyContainer(
                 alignment: Alignment.centerRight,
                 color: Colors.transparent,
                 borderColor: Colors.transparent,
-                onTap: () => ProcessTest(contextM).deleteTest(test),
+                onTap: () => ProcessTest(contextM).deleteTest(key),
                 child: DistributorTheme(contextM).icons.delete),
           ),
         ]),

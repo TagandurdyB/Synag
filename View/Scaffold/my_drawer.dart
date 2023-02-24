@@ -21,12 +21,7 @@ class MyDrawer extends StatelessWidget {
     contextM = context;
     return Drawer(
       child: Column(children: [
-        Container(
-          color: const Color(0xff7262DF),
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top,
-          ),
-        ),
+        buildTopLine(context),
         title ?? const SizedBox(),
         Expanded(
           child: SingleChildScrollView(
@@ -56,6 +51,15 @@ class MyDrawer extends StatelessWidget {
         )
       ]),
     );
+  }
+
+  Container buildTopLine(BuildContext context) {
+    return Container(
+        color: const Color(0xff7262DF),
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top,
+        ),
+      );
   }
 
   Widget draverIcon(IconData icon) {
