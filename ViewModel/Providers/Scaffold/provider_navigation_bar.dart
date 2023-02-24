@@ -17,11 +17,12 @@ class ProcessNavigationBar {
   final BuildContext context;
   ProcessNavigationBar(this.context);
 
-  dynamic _getProvider(BuildContext context) {
+  dynamic _changeProvider(BuildContext context) {
     return Provider.of<ProviderNavigationBar>(context, listen: false);
   }
 
-  void screenIndex(int index) => _getProvider(context).changeScreen(index);
+  void changeIndex(int index) => _changeProvider(context).changeScreen(index);
+    int get screenIndex => _changeProvider(context).selectScreen;
 
 }
 

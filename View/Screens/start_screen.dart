@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:synag/View/Pages/page_get_test.dart';
 import 'package:synag/ViewModel/names_vm.dart';
 
 import '../../Model/test_element_model.dart';
@@ -52,7 +53,8 @@ class StartScreen extends StatelessWidget {
 
   Widget buildTestCard(List<ElemTest> test, String key) => MyContainer(
         onTap: () {
-          Navigator.pushNamed(context, Rout.getTest);
+          //Navigator.pushNamed(context, Rout.getTest);
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>GetTestPage(tests: test)));
         },
         color: Colors.transparent,
         shape: MySize.width * 0.02,

@@ -34,7 +34,7 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   DrawBarBtn(
                     onTap: () {
-                      ProcessNavigationBar(context).screenIndex(0);
+                      ProcessNavigationBar(context).changeIndex(0);
                       Navigator.pushNamedAndRemoveUntil(
                           context, Rout.home, (route) => false);
                     },

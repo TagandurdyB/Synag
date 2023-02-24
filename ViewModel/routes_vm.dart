@@ -22,7 +22,7 @@ class Rout {
     home: (context) => const HomePage(),
     add: (context) => AddTestPage(),
     tests: (context) => const TestsPage(),
-    getTest: (context) => const GetTestPage(),
+   // getTest: (context) =>  GetTestPage(),
     setting: (context) => const TestSettingPage(),
   };
 }

@@ -19,7 +19,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
           setState(() {
             _selectIndex = index;
           });
-         ProcessNavigationBar(context).screenIndex(index); 
+         ProcessNavigationBar(context).changeIndex(index); 
         },
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey[400],

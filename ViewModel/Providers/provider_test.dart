@@ -113,6 +113,9 @@ class ProcessTest {
 
     void changeCount(String name, int value) =>
       _changeProvider(context).changeCount(name, value);    
+
+    int countVal(String key) => _changeProvider(context).countValue(key);
+
 }
 
 class DistributorTest {

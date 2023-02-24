@@ -12,8 +12,12 @@ class ThemeStyle {
       TextStyle(color: Colors.black, fontSize: MySize.width * 0.04);
   TextStyle picker =
       TextStyle(color: Colors.grey, fontSize: MySize.width * 0.05);
-        TextStyle pickerDesc =
+  TextStyle pickerDesc =
       TextStyle(color: Colors.grey, fontSize: MySize.width * 0.03);
+  TextStyle question =
+      TextStyle(color: Colors.black, fontSize: MySize.width * 0.07);
+  TextStyle check =
+      TextStyle(color: Colors.black, fontSize: MySize.width * 0.06);
 }
 
 class ThemeDarkStyle extends ThemeStyle {
@@ -25,11 +29,16 @@ class ThemeDarkStyle extends ThemeStyle {
   @override
   TextStyle btns =
       TextStyle(color: Colors.white, fontSize: MySize.width * 0.04);
-        @override
-    TextStyle picker =
+  @override
+  TextStyle picker =
       TextStyle(color: Colors.grey, fontSize: MySize.width * 0.05);
-              @override
-    TextStyle pickerDesc =
+  @override
+  TextStyle pickerDesc =
       TextStyle(color: Colors.grey, fontSize: MySize.width * 0.03);
-      
+  @override
+  TextStyle question =
+      TextStyle(color: Colors.white, fontSize: MySize.width * 0.07);
+  @override
+  TextStyle check =
+      TextStyle(color: Colors.white, fontSize: MySize.width * 0.06);
 }
