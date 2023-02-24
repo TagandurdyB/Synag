@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../ViewModel/Providers/Scaffold/provider_navigation_bar.dart';
-import '/View/Screens/first_screen.dart';
-import '/View/Screens/second_screen.dart';
+import 'test_screen.dart';
+import 'start_screen.dart';
 
 // ignore: must_be_immutable
 class HomeScreens extends StatelessWidget {
@@ -13,8 +13,8 @@ class HomeScreens extends StatelessWidget {
   }
 
   List<Widget> screens =  [
-    FirstScreen(),
-    const SecondScreen(),
+     StartScreen(),
+    TestScreen(),
   ];
 
   Widget buildScreens() {

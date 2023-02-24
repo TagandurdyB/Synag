@@ -1,3 +1,5 @@
+import 'package:synag/ViewModel/Providers/Scaffold/provider_navigation_bar.dart';
+
 import '/ViewModel/Providers/provider_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +34,7 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   DrawBarBtn(
                     onTap: () {
+                      ProcessNavigationBar(context).screenIndex(0);
                       Navigator.pushNamedAndRemoveUntil(
                           context, Rout.home, (route) => false);
                     },
@@ -44,6 +47,34 @@ class MyDrawer extends StatelessWidget {
                         },
                         icon: DistributorTheme(context).icons.changeMod),
                   ),
+                  DrawBarBtn(
+                    onTap: () {
+                      if (ModalRoute.of(context)?.settings.name != Rout.tests) {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, Rout.tests);
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    //  titleLeft: SWi * 0.15,
+                    leading: draverIcon(Icons.quiz_outlined),
+                    title: const Text("Synaglar"),
+                    // trailing: ,
+                  ),
+                   DrawBarBtn(
+                    onTap: () {
+                      if (ModalRoute.of(context)?.settings.name != Rout.setting) {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, Rout.setting);
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    //  titleLeft: SWi * 0.15,
+                    leading: draverIcon(Icons.settings),
+                    title: const Text("Sazlamalar"),
+                    // trailing: ,
+                  ),
                 ],
               ),
             ),
@@ -55,25 +86,25 @@ class MyDrawer extends StatelessWidget {
 
   Container buildTopLine(BuildContext context) {
     return Container(
-        color: const Color(0xff7262DF),
-        padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top,
-        ),
-      );
+      color: const Color(0xff7262DF),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top,
+      ),
+    );
   }
 
   Widget draverIcon(IconData icon) {
     final double sizeWidth = MySize.width;
     return MyContainer(
         shape: sizeWidth * 0.02,
-        borderColor: const Color(0xff9245FF),
+        borderColor: Colors.blue[500]!,
         borderWidth: sizeWidth * 0.003,
         width: sizeWidth * 0.11,
         height: sizeWidth * 0.11,
         color: DistributorTheme(contextM).colors.canvas,
         child: Icon(
           icon,
-          color: const Color(0xff6A00FF),
+          color: Colors.blue,
           size: sizeWidth * 0.08,
         ));
   }

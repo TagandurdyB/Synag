@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:synag/Model/test_element_model.dart';
 import '../../ViewModel/routes_vm.dart';
 import '/View/Scaffold/my_scaffold_all.dart';
 import '/View/Widgets/ReadyInput/ready_input_base.dart';
@@ -46,7 +45,6 @@ class AddTestPage extends StatelessWidget {
 
   Widget buildFilePicker() => TxtPickerWidget();
 
-  final myBase = Hive.box(Names.base);
   Widget buildBtns() {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       buildCencel(),
@@ -56,10 +54,9 @@ class AddTestPage extends StatelessWidget {
           if (!RIBase.isEmpety(RITags.rITestName)) {
             final String name = RIBase.getText(RITags.rITestName);
             final List<List<String>> listTest = ProcessTest(contextM).testList;
-            debugPrint("dsadjkasask++++++++++++$listTest");
-            myBase.put(name, listTest);
-            Navigator.pushNamedAndRemoveUntil(
-                contextM, Rout.home, (route) => false);
+            // myBase.put(name, listTest);
+            ProcessTest(contextM).addHive(name, listTest);
+            Navigator.pop(contextM);
           } else {
             focus.requestFocus();
           }

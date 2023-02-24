@@ -13,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.openBox(Names.base);
+  Hive.openBox(Names.count);
   runApp(MultiProvider(providers: MyProvoders.list, child: const MyApp()));
   MyOrientation.systemUiOverlayStyle();
 }

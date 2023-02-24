@@ -8,8 +8,8 @@ import '../../ViewModel/routes_vm.dart';
 import '../../ViewModel/size_vm.dart';
 
 // ignore: must_be_immutable
-class FirstScreen extends StatelessWidget {
-  FirstScreen({super.key});
+class TestScreen extends StatelessWidget {
+  TestScreen({super.key});
 
   late BuildContext contextM;
 
@@ -65,7 +65,7 @@ class FirstScreen extends StatelessWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Expanded(child: Text(key)),
-          Expanded(child: Center(child: Text("0"))),
+          Expanded(child: Center(child: Text("${test.length}"))),
           Expanded(
             child: MyContainer(
                 alignment: Alignment.centerRight,

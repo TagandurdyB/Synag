@@ -7,6 +7,7 @@ class ThemeIcon {
   Icon txtPicker =  Icon(Icons.note_add_outlined, color: Colors.grey,size: MySize.width*0.3);
     Icon txtSucsess =  Icon(Icons.text_snippet_outlined, color: Colors.green[300],size: MySize.width*0.3);
   Icon delete =  Icon(Icons.delete_forever, color: Colors.red,size: MySize.width*0.07);
+    Icon edit =  Icon(Icons.edit_document, color: Colors.green,size: MySize.width*0.07);
 }
 
 class ThemeDarkIcon extends ThemeIcon {

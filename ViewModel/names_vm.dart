@@ -4,4 +4,5 @@ class RITags {
 
 class Names {
   static const String base = "TestBank";
+    static const String count = "TestCountBank";
 }

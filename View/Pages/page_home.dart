@@ -1,4 +1,5 @@
-import '../Screens/home_screens.dart';
+import 'package:synag/View/Screens/start_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import '../Scaffold/my_scaffold_all.dart';
@@ -8,8 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldAll(
-      body: HomeScreens()
+    return  ScaffoldAll(
+      body: StartScreen()
     );
   }
 }

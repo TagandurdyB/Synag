@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:synag/Model/test_element_model.dart';
+import 'package:synag/View/Widgets/pop_up_widget.dart';
 import 'package:synag/ViewModel/test_picker_vm.dart';
 
 import '../names_vm.dart';
@@ -39,10 +40,29 @@ class ProviderTest extends ChangeNotifier {
   }
 
   final myBase = Hive.box(Names.base);
+  final myCout = Hive.box(Names.count);
+
+  void changeCount(String name, int value) {
+    myCout.put(name,value);
+    notifyListeners();
+  }
+
+  int countValue(String key) {
+    final getHive = myCout.get(key);
+    if (getHive==null) {
+      return 0;
+    }
+    return getHive;
+  }
+
+  void addHive(String name, List value) {
+    myBase.put(name, value);
+    changeCount(name,value.length);
+    notifyListeners();
+  }
 
   List<ElemTest> testValues(String key) {
     final getHive = myBase.get(key);
-    debugPrint("//////////////////////////$getHive");
     if (getHive.isEmpty) {
       return [];
     }
@@ -51,7 +71,6 @@ class ProviderTest extends ChangeNotifier {
 
   List testkeys() {
     final getHive = myBase.keys.toList();
-    debugPrint("KEYS//////////////////////////$getHive");
     if (getHive.isEmpty) {
       return [];
     }
@@ -62,6 +81,12 @@ class ProviderTest extends ChangeNotifier {
     myBase.delete(key);
     notifyListeners();
   }
+
+  void editTestCount(String key) {
+    //myBase.delete(key);
+    notifyListeners();
+  }
+
 }
 
 class ProcessTest {
@@ -75,12 +100,19 @@ class ProcessTest {
   void addTest(ElemTest obj) => _changeProvider(context).addTest(obj);
   void changeTXT(PlatformFile txt) => _changeProvider(context).changeTXT(txt);
   void deleteTest(String key) => _changeProvider(context).deleteTest(key);
+  void editTestCout(String key) => _changeProvider(context).editTestCount(key);
 
   void changeTest(List<List<String>> txt) =>
       _changeProvider(context).addLastTxtTest(txt);
 
   void ereaseTest() => _changeProvider(context).ereaseLastTxtTest();
   List<List<String>> get testList => _changeProvider(context).txtList;
+
+  void addHive(String name, List value) =>
+      _changeProvider(context).addHive(name, value);
+
+    void changeCount(String name, int value) =>
+      _changeProvider(context).changeCount(name, value);    
 }
 
 class DistributorTest {
@@ -94,7 +126,10 @@ class DistributorTest {
   PlatformFile? get txt => _getProvider(context).txt;
   //List<ElemTest> get tests => _getProvider(context).tests;
 
-  List<ElemTest>  tests(String key) => _getProvider(context).testValues(key);
+  List<ElemTest> tests(String key) => _getProvider(context).testValues(key);
+
+    int countVal(String key) => _getProvider(context).countValue(key);
+
 
   List get keys => _getProvider(context).testkeys();
 
