@@ -1,5 +1,4 @@
 import 'package:synag/View/Pages/page_add_test.dart';
-import 'package:synag/View/Pages/page_get_test.dart';
 import 'package:synag/View/Pages/page_test_setting.dart';
 import 'package:synag/View/Pages/page_tests.dart';
 

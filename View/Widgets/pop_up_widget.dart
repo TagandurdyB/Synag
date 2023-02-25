@@ -50,6 +50,23 @@ class PopUpWidget {
       },
     );
   }
+
+    popUpAutoSize(BuildContext context) {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return ShowingDialog(
+          textColor: textColor,
+          theme: theme,
+          type: DialogType.cubertino,
+          title: title,
+          actionsTeam: actionsTeam,
+          content: content,
+          isPopEnable: isPopEnable,
+        );
+      },
+    );
+  }
 }
 
 class ShowingDialog extends StatefulWidget {
@@ -172,3 +189,5 @@ class _ShowingDialogState extends State<ShowingDialog> {
     );
   }
 }
+
+

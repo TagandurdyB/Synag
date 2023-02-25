@@ -1,6 +1,4 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:synag/Model/test_element_model.dart';
 import 'package:synag/View/Widgets/my_container.dart';
 import 'package:synag/ViewModel/Providers/provider_test.dart';
 import 'package:synag/ViewModel/Providers/provider_theme.dart';
@@ -10,7 +8,7 @@ import '../../ViewModel/test_picker_vm.dart';
 
 // ignore: must_be_immutable
 class TxtPickerWidget extends StatefulWidget {
-  TxtPickerWidget({super.key});
+  const TxtPickerWidget({super.key});
 
   @override
   State<TxtPickerWidget> createState() => _TxtPickerWidgetState();
@@ -19,6 +17,7 @@ class TxtPickerWidget extends StatefulWidget {
 class _TxtPickerWidgetState extends State<TxtPickerWidget> {
   final width = MySize.width;
 
+  @override
   late BuildContext context;
 
   @override

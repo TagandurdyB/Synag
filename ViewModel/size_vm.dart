@@ -20,6 +20,11 @@ class MySize extends ChangeNotifier {
   void changeSize(double width, double height) {
     _screenWidth = width;
     _screenHeight = height;
+    if (width > height) {
+     /* _screenWidth = height;
+      _screenHeight = width;*/
+      _screenWidth=400.0;
+    }
     notifyListeners();
   }
 }

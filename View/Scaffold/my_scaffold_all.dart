@@ -6,6 +6,7 @@ import 'my_drawer.dart';
 class ScaffoldAll extends StatelessWidget {
   final Widget body;
   final Widget? appBarLeading;
+  final List<Widget>? appBarActions;
   final Function? funcBackBtn;
   final bool bottomDrawer;
   final GlobalKey<ScaffoldState>? scaffoldKey;
@@ -15,7 +16,8 @@ class ScaffoldAll extends StatelessWidget {
       this.funcBackBtn,
       this.scaffoldKey,
       this.bottomDrawer = false,
-      this.appBarLeading});
+      this.appBarLeading,
+      this.appBarActions});
   @override
   Widget build(BuildContext context) {
     double bottomHeight = 0.0;
@@ -40,6 +42,7 @@ class ScaffoldAll extends StatelessWidget {
               MyAppBar(
                   funcBackBtn: funcBackBtn,
                   bottomDrawer: bottomDrawer,
+                  actions: appBarActions,
                   leading: appBarLeading),
               Visibility(
                 visible:

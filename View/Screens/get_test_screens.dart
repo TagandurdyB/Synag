@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:synag/Model/test_element_model.dart';
 import 'package:synag/View/Screens/question_screen.dart';
+import 'package:synag/ViewModel/Providers/provider_test.dart';
 import '../../ViewModel/Providers/Scaffold/provider_navigation_bar.dart';
-import 'test_screen.dart';
-import 'start_screen.dart';
 
 // ignore: must_be_immutable
 class GetTestScreens extends StatelessWidget {
   List tests;
   GetTestScreens({required this.tests, super.key});
 
+  late BuildContext context;
+
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return buildScreens();
   }
-
-  /* List<Widget> screens = [
-    StartScreen(),
-    TestScreen(),
-  ];*/
 
   List<Widget> screens = [];
 
@@ -27,11 +23,13 @@ class GetTestScreens extends StatelessWidget {
         tests.length,
         (index) => QuestionScreen(
               test: tests[index],
-              count: tests.length,
             ));
+
+    screens = screens..shuffle();
+
     return Stack(
       children: List.generate(
-          screens.length,
+          ProcessTest(context).countSelectTest,
           (index) => Builder(
                 builder: (context) => Offstage(
                   offstage:

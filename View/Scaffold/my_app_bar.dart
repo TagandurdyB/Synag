@@ -5,22 +5,22 @@ import 'package:provider/provider.dart';
 class MyAppBar extends StatelessWidget {
   final Function? funcBackBtn;
   final Widget? leading;
+
+  final List<Widget>? actions;
   final bool bottomDrawer;
   const MyAppBar(
-      {super.key, this.funcBackBtn, required this.bottomDrawer, this.leading});
+      {super.key,
+      this.actions,
+      this.funcBackBtn,
+      required this.bottomDrawer,
+      this.leading});
 
   @override
   Widget build(BuildContext context) {
     final providerTheme = Provider.of<ProviderTheme>(context);
     return AppBar(
         leading: leading,
-        /*BackButton(onPressed: () {
-        if (funcBackBtn != null) {
-          funcBackBtn!();
-        } else {
-          Navigator.pop(context);
-        }
-      }),*/
+        actions: actions,
         centerTitle: true,
         title: providerTheme.texts
             .mainTitle //Text(providerTheme.texts.mainTitle, style: providerTheme.styles.appBar),

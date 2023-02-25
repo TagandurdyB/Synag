@@ -46,9 +46,9 @@ class SettingScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Ady"),
+            const Text("Ady"),
             DistributorTheme(context).texts.testCount,
-            Text("Saýla"),
+            const Text("Saýla"),
           ],
         ),
       );

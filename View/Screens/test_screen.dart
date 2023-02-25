@@ -42,9 +42,9 @@ class TestScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Ady"),
+            const Text("Ady"),
             DistributorTheme(contextM).texts.testCount,
-            Text("Aýyr"),
+            const Text("Aýyr"),
           ],
         ),
       );

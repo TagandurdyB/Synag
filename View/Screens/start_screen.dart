@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:synag/View/Pages/page_get_test.dart';
-import 'package:synag/ViewModel/names_vm.dart';
+import 'package:synag/View/Scaffold/my_snack_bar.dart';
 
 import '../../Model/test_element_model.dart';
+import '../../ViewModel/Providers/Scaffold/provider_navigation_bar.dart';
 import '../../ViewModel/Providers/provider_test.dart';
 import '../../ViewModel/Providers/provider_theme.dart';
-import '../../ViewModel/routes_vm.dart';
 import '../../ViewModel/size_vm.dart';
 import '../Widgets/my_container.dart';
 
@@ -45,7 +44,7 @@ class StartScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Ady"),
+            const Text("Ady"),
             DistributorTheme(context).texts.testCount,
           ],
         ),
@@ -54,7 +53,17 @@ class StartScreen extends StatelessWidget {
   Widget buildTestCard(List<ElemTest> test, String key) => MyContainer(
         onTap: () {
           //Navigator.pushNamed(context, Rout.getTest);
+          if(ProcessTest(context).countVal(key)!=0){
+            ProcessTest(context).changeKey(key);
+            ProcessTest(context).trueErease;
+            ProcessNavigationBar(context).changeIndex(0);
           Navigator.push(context, MaterialPageRoute(builder: (context)=>GetTestPage(tests: test)));
+          }else{
+            MySnack(
+              message: "Sorag ýok!",textBgColor: Colors.red,
+              textColor: Colors.white,sec: 1
+            ).pushSnack(context);
+          }
         },
         color: Colors.transparent,
         shape: MySize.width * 0.02,

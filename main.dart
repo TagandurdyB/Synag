@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      showPerformanceOverlay: false,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'SYNAG APP',
       theme: MyTheme(context).theme(),
       initialRoute: Rout.logo,
       routes: Rout.pages,

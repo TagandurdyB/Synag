@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/View/Widgets/my_container.dart';
 import '../../ViewModel/routes_vm.dart';
 import '../../ViewModel/size_vm.dart';
 import '../../ViewModel/time_vm.dart';
@@ -27,7 +28,12 @@ class _LogoPageState extends State<LogoPage> {
     );
   }
 
-  Widget buildLogo() => const CircleAvatar(
-        child: Icon(Icons.ac_unit_sharp),
-      );
+  Widget buildLogo() => MyContainer(
+   shape: MySize.width*0.05,
+   colors: const [Colors.red,Colors.blue,],
+   borderColor: Colors.white,
+   borderWidth: MySize.width*0.015,
+    padding: EdgeInsets.all(MySize.width*0.05),
+    child: Text("SYNAG",style:TextStyle(fontSize: MySize.width*0.1)),
+  );
 }

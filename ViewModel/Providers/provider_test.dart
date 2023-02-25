@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:synag/Model/test_element_model.dart';
-import 'package:synag/View/Widgets/pop_up_widget.dart';
 import 'package:synag/ViewModel/test_picker_vm.dart';
 
 import '../names_vm.dart';
@@ -43,21 +42,28 @@ class ProviderTest extends ChangeNotifier {
   final myCout = Hive.box(Names.count);
 
   void changeCount(String name, int value) {
-    myCout.put(name,value);
+    myCout.put(name, value);
     notifyListeners();
   }
 
   int countValue(String key) {
     final getHive = myCout.get(key);
-    if (getHive==null) {
+    if (getHive == null) {
       return 0;
     }
     return getHive;
   }
 
+  String _selectedKey = "";
+  String get selectedKey => _selectedKey;
+  void changeKey(String key) {
+    _selectedKey = key;
+    notifyListeners();
+  }
+
   void addHive(String name, List value) {
     myBase.put(name, value);
-    changeCount(name,value.length);
+    changeCount(name, value.length);
     notifyListeners();
   }
 
@@ -87,6 +93,25 @@ class ProviderTest extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _canCheck = true;
+  bool get canCheck => _canCheck;
+
+  void changeCheck(bool can) {
+    _canCheck = can;
+    notifyListeners();
+  }
+
+  int _trueCount = 0;
+  int get trueCount => _trueCount;
+  void addTrue() {
+    _trueCount++;
+    notifyListeners();
+  }
+
+  void trueErease() {
+    _trueCount = 0;
+    notifyListeners();
+  }
 }
 
 class ProcessTest {
@@ -111,11 +136,23 @@ class ProcessTest {
   void addHive(String name, List value) =>
       _changeProvider(context).addHive(name, value);
 
-    void changeCount(String name, int value) =>
-      _changeProvider(context).changeCount(name, value);    
+  void changeCount(String name, int value) =>
+      _changeProvider(context).changeCount(name, value);
 
-    int countVal(String key) => _changeProvider(context).countValue(key);
+  int countVal(String key) => _changeProvider(context).countValue(key);
 
+  void changeCheck(bool can) => _changeProvider(context).changeCheck(can);
+  bool get canCkeck => _changeProvider(context).canCheck;
+
+  void changeKey(String key) => _changeProvider(context).changeKey(key);
+
+  String get selectKey => _changeProvider(context).selectedKey;
+
+  int get countSelectTest => _changeProvider(context).countValue(selectKey);
+
+  void get addTrue => _changeProvider(context).addTrue();
+  void get trueErease => _changeProvider(context).trueErease();
+  int get trueCount => _changeProvider(context).trueCount;
 }
 
 class DistributorTest {
@@ -131,12 +168,15 @@ class DistributorTest {
 
   List<ElemTest> tests(String key) => _getProvider(context).testValues(key);
 
-    int countVal(String key) => _getProvider(context).countValue(key);
-
+  int countVal(String key) => _getProvider(context).countValue(key);
 
   List get keys => _getProvider(context).testkeys();
 
   int get length => _getProvider(context).testkeys().length as int;
 
   List<List<String>> get selectTest => _getProvider(context).txtList;
+
+  String get selectKey => _getProvider(context).selectedKey;
+
+  int get countSelectTest => _getProvider(context).countValue(selectKey);
 }
